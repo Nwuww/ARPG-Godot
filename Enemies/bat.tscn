@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfrik7wh66psp"]
+[gd_scene load_steps=14 format=3 uid="uid://dfrik7wh66psp"]
 
 [ext_resource type="Script" uid="uid://tahv8qxdvwio" path="res://Enemies/Bat.cs" id="1_g687e"]
 [ext_resource type="Texture2D" uid="uid://rimmkqhtf2k2" path="res://Enemies/Bat.png" id="1_p2utt"]
 [ext_resource type="Texture2D" uid="uid://dpj07wrou22jo" path="res://Shadows/SmallShadow.png" id="2_vut0d"]
 [ext_resource type="PackedScene" uid="uid://djsmlr8p6k4nv" path="res://HurtHitBoxes/hurt_box.tscn" id="3_va2ne"]
+[ext_resource type="PackedScene" uid="uid://ca6jwsi2tdij7" path="res://stats.tscn" id="5_i84q7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2utt"]
 atlas = ExtResource("1_p2utt")
@@ -83,5 +84,7 @@ collision_mask = 4
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_g687e")
+
+[node name="Stats" parent="." instance=ExtResource("5_i84q7")]
 
 [connection signal="area_entered" from="HurtBox" to="." method="OnHurt"]

@@ -11,10 +11,13 @@ public enum PlayerState
 }
 public partial class Player : CharacterBody2D
 {
-	public float Max_Speed = 130;
-	public float Acceleration = 1200;
-	public float Friction = 2000;
-	public float Roll_Speed = 100;
+	[ExportGroup("速度常数")]
+	[Export] public float Max_Speed = 130;
+	[Export] public float Acceleration = 1200;
+	[Export] public float Friction = 2000;
+	[Export] public float Roll_Speed = 100;
+	[ExportGroup("")]
+	
 	public AnimationTree animationTree;
 	public AnimationNodeStateMachinePlayback playback_state;
 	public PlayerState state = PlayerState.Idle;
@@ -71,6 +74,7 @@ public partial class Player : CharacterBody2D
 
 	public void MoveSate(double delta)
 	{
+		// move direction input
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();
 		if (inputDir != Vector2.Zero)
 		{
@@ -89,6 +93,7 @@ public partial class Player : CharacterBody2D
 			Velocity = Velocity.MoveToward(Vector2.Zero, Friction * (float)delta);
 		}
 
+		// key input monitor
 		if (Input.IsActionJustPressed("attack"))
 		{
 			state = PlayerState.Attack;
@@ -105,6 +110,7 @@ public partial class Player : CharacterBody2D
 		{
 			state = PlayerState.Run;
 		}
+
 		MoveAndSlide();
 	}
 
